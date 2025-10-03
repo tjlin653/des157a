@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Experiment 1</h1>
+    <h2>To see the functionality of my code, press Cmd/Ctrl + Shift + I,  then go to the "Console" tab</h2>
+
+    <script>
+        // Prints all the numbers from 1 to 100, with two exceptions. For numbers divisible by 3, prints "Fizz" instead of the number, and for numbers divisible by 5 (and not 3), prints "Buzz" instead.
+
+        //for loop repeats the code for each number
+        for(i=1; i<101; i++){
+            //selects which numbers to act upon
+            if(i%3 === 0){
+                    //sequence, first checks if i is divisible by 3, then if divisible by 5, then if neither
+                    console.log("Fizz");
+                } else if(i%5 === 0){
+                    console.log("Buzz");
+                } else {
+                    console.log(i);
+                }
+        }
+    </script>
+</body>
+</html>
