@@ -1,0 +1,161 @@
+body {
+  background-color: #202020;
+  color: #969696;
+}
+
+body h1 {
+  font-family: Montserrat Alternates;
+  font-size: 96px;
+  text-align: center;
+  margin: 50px;
+}
+
+body h2 {
+  font-family: Lexend;
+  font-size: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+body h3 {
+  font-family: Lexend;
+  font-size: 16px;
+  text-align: center;
+  padding-top: 5px;
+}
+
+main article h2 {
+  font-family: Montserrat Alternates;
+  font-size: 32px;
+  padding: 20px 0 10px 115px;
+  text-transform: uppercase;
+}
+
+main article ul {
+  font-family: Lexend;
+  font-size: 21px;
+  padding-left: 137px;
+}
+
+.columns {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.button {
+  animation: hoverOut 1s ease forwards;
+  color: white;
+  padding-left: 10px;
+}
+
+.button a:link {
+  color: white; 
+  text-decoration: none;
+  padding-bottom: 0;
+}
+
+.button a:visited {
+  color: white;
+}
+
+.button:hover {
+  animation: hoverIn 1s ease forwards;
+}
+
+.button a {
+  transition: 1s;
+  color: white;
+  padding-bottom: 0;
+}
+
+.link a:hover {
+  transition: 1s;
+  color: #E4423F;
+}
+
+@keyframes hoverIn {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(20px);
+  }
+}
+
+@keyframes hoverOut {
+  0% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(0px);
+    
+  }
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  padding-left: 150px;
+  margin: 0;
+}
+
+.hollowCircle {
+  position: absolute;
+  z-index: 1;
+  width: 10px;
+  height: 10px;
+  border: 4px solid #E4423F;
+  border-radius: 50%;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  transition-delay: 0.2s;
+}
+
+.link:hover .hollowCircle {
+  opacity: 1;
+}
+
+.bgPattern {
+  position: relative;
+  z-index: -1;
+}
+
+.circuitVerticalMain1 {
+  position: absolute;
+  width: 4px; height: 413px; background-color: #FFF10C;
+  top: 110px;
+  left: -1290px;
+}
+
+.circuitHorizontalMain1 {
+  position: absolute;
+  width: 141px; height: 4px; background-color: #FFF10C;
+  top: 110px;
+  left: -1290px;
+}
+
+.circuitCircleMain1 {
+  position: absolute;
+  width: 17px; height: 17px; background-color: #FFF10C;
+  border-radius: 50%;
+  top: 103px;
+  left: -1160px;
+}
+
+footer {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-family: Lexend;
+  text-align: center;
+}
+
+footer p {
+  margin-bottom: 10px;
+}
+
+footer address a:link {
+  color: white;
+}
