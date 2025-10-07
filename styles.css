@@ -7,13 +7,14 @@ body {
   display: flex;
   justify-content: center;
   text-align: center;
+  overflow: hidden;
 }
 
 .name h1 {
   font-family: Montserrat Alternates;
   font-size: 121px;
   text-align: center;
-  margin: 35px 0 30px 0;
+  margin: 35px 0 0px 0;
   line-height: 1;
   color: #E4423F;
 }
@@ -78,16 +79,17 @@ body {
 
 body h2 {
   font-family: Lexend;
-  font-size: 20px;
+  font-size: 40px;
   text-align: center;
   text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
 body h3 {
   font-family: Lexend;
   font-size: 16px;
   text-align: center;
-  padding-top: 5px;
+  padding: 5px 0 34px 0;
 }
 
 main article h2 {
@@ -97,10 +99,10 @@ main article h2 {
   text-transform: uppercase;
 }
 
-main article ul {
+main article a {
   font-family: Lexend;
   font-size: 21px;
-  padding-left: 137px;
+  text-decoration: none;
 }
 
 .columns {
@@ -113,7 +115,7 @@ main article ul {
 .button {
   animation: hoverOut 1s ease forwards;
   color: white;
-  padding-left: 10px;
+  padding: 16px 0 16px 10px;
 }
 
 .button a:link {
@@ -134,11 +136,6 @@ main article ul {
   transition: 1s;
   color: white;
   padding-bottom: 0;
-}
-
-.link a:hover {
-  transition: 1s;
-  color: #E4423F;
 }
 
 @keyframes hoverIn {
@@ -164,7 +161,14 @@ main article ul {
   display: flex;
   align-items: center;
   padding-left: 150px;
+  position: relative;
+  top: 1.5vw;
   margin: 0;
+}
+
+.link a:hover {
+  transition: 1s;
+  color: #E4423F;
 }
 
 .hollowCircle {
@@ -174,7 +178,7 @@ main article ul {
   height: 10px;
   border: 4px solid #E4423F;
   border-radius: 50%;
-  padding: 0;
+  padding-top: 0;
   opacity: 0;
   transition: opacity 1s ease;
   transition-delay: 0.2s;
@@ -220,6 +224,7 @@ footer {
   border-radius: 20px;
   position: relative;
   z-index: 1;
+  top: 1vw;
   left: 38vw;
 }
 
