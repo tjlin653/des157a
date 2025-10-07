@@ -1,6 +1,16 @@
 body {
   background-color: #202020;
   color: #969696;
+  margin: 0;
+}
+
+.allContent {
+    width: 100%;
+    max-width: 1200px;    
+    min-width: 800px;
+    max-height: 750px;     
+    margin: 0 auto;
+    position: relative;
 }
 
 .name {
@@ -199,24 +209,28 @@ main article a {
   overflow: hidden;
 }
 
-.pattern1 {
-  top: 9vw;
-  left: 2vw;
+.pattern1, .pattern2, .pattern3, .pattern4 {
+  position: absolute;
 }
 
-.pattern2 {
-  top: 9vw;
-  left: 25.5vw;
+.pattern1 { 
+  top: 30%; 
+  left: 2%; 
 }
 
-.pattern3 {
-  top: 9vw;
-  left: 46.5vw;
+.pattern2 { 
+  top: 30%; 
+  left: 25.5%; 
 }
 
-.pattern4 {
-  top: 9vw;
-  left: 76vw;
+.pattern3 { 
+  top: 30%; 
+  left: 46.5%; 
+}
+
+.pattern4 { 
+  top: 30%; 
+  left: 76%; 
 }
 
 footer {
