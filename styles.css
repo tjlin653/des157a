@@ -173,7 +173,6 @@ main article a {
   }
   100% {
     transform: translateX(0px);
-    
   }
 }
 
@@ -184,6 +183,11 @@ main article a {
   position: relative;
   top: 1.5vw;
   margin: 0;
+  transition: 1s;
+}
+
+.link a {
+  transition: color 1s ease;
 }
 
 .link a:hover {
