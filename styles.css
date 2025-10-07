@@ -3,11 +3,77 @@ body {
   color: #969696;
 }
 
-body h1 {
-  font-family: Montserrat Alternates;
-  font-size: 96px;
+.name {
+  display: flex;
+  justify-content: center;
   text-align: center;
-  margin: 50px;
+}
+
+.name h1 {
+  font-family: Montserrat Alternates;
+  font-size: 121px;
+  text-align: center;
+  margin: 35px 0 30px 0;
+  line-height: 1;
+  color: #E4423F;
+}
+
+#T {
+  transform: translateX(-100vw);
+  animation: slideFromRight 2s 0.6s ease forwards;
+}
+
+#O {
+  transform: translateX(-100vw);
+  animation: slideFromRight 2s 0.4s ease forwards;
+}
+
+#N {
+  transform: translateX(-100vw);
+  animation: slideFromRight 2s 0.2s ease forwards;
+}
+
+#Y {
+  padding-right: 2vw;
+  animation: slideFromRight 2s ease forwards;
+}
+
+#L {
+  padding-left: 2vw;
+  animation: slideFromLeft 2s ease forwards;
+}
+
+#I {
+  transform: translateX(100vw);
+  animation: slideFromLeft 2s 0.2s ease forwards;
+}
+
+#N2 {
+  transform: translateX(100vw);
+  animation: slideFromLeft 2s 0.4s ease forwards;
+}
+
+#S {
+  transform: translateX(100vw);
+  animation: slideFromLeft 2s 0.6s ease forwards;
+}
+
+@keyframes slideFromRight {
+  0% {
+    transform: translateX(-100vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromLeft {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 body h2 {
@@ -118,42 +184,48 @@ main article ul {
   opacity: 1;
 }
 
-.bgPattern {
-  position: relative;
+.circuitPattern {
+  position: absolute;
   z-index: -1;
+  height: 100%;
+  overflow: hidden;
 }
 
-.circuitVerticalMain1 {
-  position: absolute;
-  width: 4px; height: 413px; background-color: #FFF10C;
-  top: 110px;
-  left: -1290px;
+.pattern1 {
+  top: 7vw;
+  left: 4.5vw;
 }
 
-.circuitHorizontalMain1 {
-  position: absolute;
-  width: 141px; height: 4px; background-color: #FFF10C;
-  top: 110px;
-  left: -1290px;
+.pattern2 {
+  top: 7vw;
+  left: 27vw;
 }
 
-.circuitCircleMain1 {
-  position: absolute;
-  width: 17px; height: 17px; background-color: #FFF10C;
-  border-radius: 50%;
-  top: 103px;
-  left: -1160px;
+.pattern3 {
+  top: 7vw;
+  left: 47.5vw;
+}
+
+.pattern4 {
+  top: 7vw;
+  left: 74.5vw;
 }
 
 footer {
-  padding-top: 30px;
-  padding-bottom: 20px;
+  padding: 10px 0 10px 0;
+  margin:30px 650px 0 650px;
   font-family: Lexend;
   text-align: center;
+  background-color:rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  position: relative;
+  z-index: 1;
+  left: 38vw;
 }
 
 footer p {
-  margin-bottom: 10px;
+  margin: 0;
+  z-index: 1;
 }
 
 footer address a:link {
