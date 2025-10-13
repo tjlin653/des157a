@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Experimentation - Functions & DOM</title>
+    <style>
+		.red { background-color: coral; }
+        .blue { background-color: dodgerblue; }
+        .yellow { background-color: gold; }
+    </style>
+</head>
+<body>
+    <h1>Colors</h1>
+    <script>
+        // Asks the user for a primary color, then changes the background color to that chosen color and offers the user a random candy of the same color.
+
+        var candy = ['jelly beans','gummy bears','gummy worms','m&ms','skittles','lollipops','jolly ranchers'];
+        var chosenColor = prompt("Please enter a primary color", "").toLowerCase();
+        
+        function backgroundColor(color){
+            var bgColor = document.querySelector('body');
+
+            if (chosenColor === 'red'){
+                bgColor.className = 'red';
+            } else if (chosenColor === 'blue'){
+                bgColor.className = 'blue';
+            } else if (chosenColor === 'yellow'){
+                bgColor.className = 'yellow';
+            } else {
+                message.innerHTML = 'You did not enter a primary color.';
+            }
+            return color;
+        }
+
+        function randomInt(min, max){
+                var numOfValues = max-min+1;
+                var randomNum=Math.random();
+                var randomVal=randomNum*numOfValues;
+                var roundedRandomVal = Math.floor(randomVal);
+                var finalNum=min+roundedRandomVal;
+                return finalNum;
+            }
+
+        function hospitality(color, offer){
+            var message = document.querySelector('h1');
+            var randomOffer = offer[randomInt(0, offer.length-1)];
+            message.innerHTML=(`Would you like some ${color} ${randomOffer}?`);
+        }
+
+        backgroundColor(chosenColor);
+        hospitality(chosenColor, candy);
+    </script>
+</body>
+</html>
