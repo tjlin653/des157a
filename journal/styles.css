@@ -1,0 +1,245 @@
+.allContent {
+    width: 100%;
+    max-width: 1200px;    
+    min-width: 800px;
+    max-height: 750px;     
+    margin: 0 auto;
+    position: relative;
+}
+
+h1, h2, h3, p {
+    margin: 0;  
+    padding: 0;
+}
+   
+img {
+    display: block; 
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+#blog {
+    text-align: center;
+    margin-top: 30px;
+}
+
+body {
+    background-color: #101010;
+    color: #f5f5f5;
+}
+
+header h1 {
+    font-family: Asap Condensed;
+    font-size: 40px;
+    color: #f5f5f5;
+}
+
+h2 {
+    font-family: Asap;
+    font-size: 14px;
+    color: #A45DBB;
+    text-transform: uppercase;
+    margin: 20px 0 20px 0;
+}
+
+.title {
+    font-family: Lexend;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+p time {
+    font-family: Asap;
+    font-size: 12px;
+    font-weight: 100;
+    opacity: 60%;
+}
+
+.sentence {
+    font-family: Lexend;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 20px 0 20px 0;
+    opacity: 80%;
+    line-height: 23px;
+}
+
+.button {
+    background: #A45DBB;
+    border-radius: 20px;
+    width: 150px;
+    padding: 10px 0 10px 0;
+}
+
+.button a {
+    padding: 10px 10px 10px 20px;
+    font-family: Lexend;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #f5f5f5;
+}
+
+.card {
+    padding: 30px;
+    border: 2px solid #828282;
+    border-radius: 20px;
+    margin: 30px;
+}
+
+.post {
+    background-color: #ffffff;
+    margin-top: 30px;
+}
+
+.post p {
+    color: #101010;
+    font-family: Lexend;
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: 350;
+    margin-bottom: 25px;
+}
+
+.post main article p {
+    text-indent: 40px;
+}
+
+.post h2 {
+    color: #101010;
+    font-family: Lexend;
+    font-size: 21px;
+    font-weight: 500;
+    margin-top: 50px;
+    text-transform: none;
+}
+
+.post .title {
+    font-family: Lexend;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #f5f5f5;
+}
+
+.post .assignment {
+    font-family: Asap;
+    font-size: 14px;
+    color: #A45DBB;
+    text-transform: uppercase;
+    margin: 20px 0 20px 0;
+}
+
+.post .content {
+    margin-top: 90px;
+}
+
+.post .box1 {
+    position: absolute;
+    width: 100%;
+    margin: -30px 100px 0 0;
+    background-color: #101010;
+    height: 405px;
+    border-radius: 0 0 0 50px;
+    z-index: -1;
+}
+
+.post .box2 {
+    position: absolute;
+    width: 100%;
+    margin: -30px 100px 100px -30px;
+    background-color: #101010;
+    height: 100px;
+    border-radius: 0 50px 0 0;
+    z-index: -1;
+}
+
+.post time {
+    color: #f5f5f5;
+}
+
+#lastParagraph {
+    padding-bottom: 50px;
+}
+
+.post footer nav a {
+    color: #A45DBB;
+    font-family: Lexend;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+nav ul li a {
+    display: block;
+    text-decoration: none;
+    padding: 0 10px;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-bottom: 4px;
+}
+
+.post .blogpic img {
+    margin: 20px 0 20px 0;
+}
+
+@media only screen and (min-width: 600px) {
+	header, #container {
+        max-width: 1020px;
+        margin: auto;
+    }
+    .card {
+        display: flex;
+    }
+    img {
+        width: 33.3333%;
+        background-color: #F7E5A3;
+    }
+    .info {
+        width: 66.6666%;
+        margin-left: 20px;
+    }
+    h2 {
+        margin-top: 0;
+    }
+    .postinfo {
+        display: flex;
+    }
+    .post .title {
+        font-size: 55px;
+        line-height: 65px;
+    }
+    .post .assignment {
+        font-size: 16px;
+    }
+    .post time {
+        font-size: 16px;
+    }
+    .post img {
+        width: 650px;
+    }
+    .post h2 {
+        margin-left: 220px;
+        font-size: 30px;
+    }
+    .post main article p {
+        margin-left: 220px;
+        margin-right: 220px;
+    }
+    .post main article .content {
+        margin-top: 90px;
+    }
+    .post .blogpic img {
+        margin-left: 220px;
+    }
+}
