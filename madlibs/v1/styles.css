@@ -17,7 +17,7 @@ body {
 
 article {
     margin: 0;
-    padding: 70px 0 0 0;
+    padding: 30px 0 0 0;
 }
 
 h1 {
@@ -48,7 +48,7 @@ form {
     gap: 20px;
 }
 
-legend {
+h2 {
     font-family: Montserrat Alternates;
     font-size: 32px;
     padding: 20px 0 20px 0;
@@ -67,7 +67,7 @@ label {
     font-size: 21px;
 }
 
-input[type="type"] {
+input[type="text"] {
     font-family: Lexend;
     width: 400px;
     height: 30px;
@@ -78,7 +78,7 @@ input[type="type"] {
     margin-bottom: 10px;
 }
 
-input[type="type"]:focus {
+input[type="text"]:focus {
     box-shadow: 0 0 0 4px #E4423F;
 }
 
