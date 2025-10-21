@@ -28,6 +28,23 @@ h1 {
     color: #AAB446;
 }
 
+#madlib-questions {
+    display: block;
+}
+
+#madlib-output {
+    display: none;
+}
+
+form input, form label {
+    display: block;
+}
+
+span {
+    font-weight: bold;
+    color: #E4423F;
+}
+
 #tentacle {
   position: fixed;
   bottom: -1vh;
@@ -52,6 +69,13 @@ h2 {
     font-family: Montserrat Alternates;
     font-size: 32px;
     padding: 20px 0 20px 0;
+}
+
+p {
+    font-family: Lexend;
+    font-size: 21px;
+    line-height: 40px;
+    color: #f5f5f5;
 }
 
 .inputBoxes {
@@ -89,15 +113,35 @@ input[type="submit"] {
     width: 400px;
     height: 40px;
     border-radius: 10px;
-    border: none;
     outline: none;
     background-color: #E4423F;
     color: #f5f5f5;
-    transition: background-color 0.2s ease;
-    transition: color 0.2s ease;
+    border: 2px solid transparent;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 input[type="submit"]:hover {
-    background-color: #f5f5f5;
-    color: #202020;
+    background-color: #202020;
+    border-color: #E4423F;
+    color:#E4423F;
+}
+
+button {
+    margin-top: 20px;
+    font-family: Lexend;
+    font-size: 21px;
+    width: 400px;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    background-color: #E4423F;
+    color: #f5f5f5;
+    border: 2px solid transparent;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #202020;
+    border-color: #E4423F;
+    color:#E4423F;
 }
