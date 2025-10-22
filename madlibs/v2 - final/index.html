@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
-    <link href="css/all.min.css" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Flavors&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 
     <link href="styles.css" rel="stylesheet">
+    <script src="script.js" defer></script>
 
-    <title>MadLib V1</title>
+    <title>MadLib V2 - Final</title>
 </head>
 <body>
     <div class="allContent">
@@ -25,10 +25,10 @@
         </article>
         <article id="madlib-questions">
             <h2>Please provide:</h2>
-        <form>
+        <form id="myform">
             <div class="inputBoxes">
-                <label for="adjective">an adjective</label>
-                <input type="text" id="adjective" required>
+                <label for="adj">an adjective</label>
+                <input type="text" id="adj" required>
             </div>
             <div class="inputBoxes">
                 <label for="place">a place</label>
@@ -43,21 +43,13 @@
                 <input type="text" id="silly" required>
             </div>
             <div class="inputBoxes">
-                <label for="verb">a verb</label>
+                <label for="verb">a verb ending in "ed"</label>
                 <input type="text" id="verb" required>
             </div>
-                <input type="submit">
+                <input type="submit" value="Create my MadLib">
         </form>
         </article>
-        <article id="madlib-output">
-            <h2>My Monster</h2>
-            <p>
-                Last night, a <span>[adjective]</span> monster crawled out of <span>[place]</span> and started singing under a full moon. It carried a giant <span>[noun]</span> and kept yelling <span>[silly word]</span> every time it <span>[verb]</span>-ed. By morning, it was famous online for its <span>[same adjective]</span> dance moves.
-            </p>
-            <button>
-                Back to Questions
-            </button>
-        </article>
+        <article id="madlib-output"></article>
     </div>
 </body>
 </html>
