@@ -1,0 +1,35 @@
+.allContent {
+    width: 100%;
+    max-width: 1200px;    
+    min-width: 800px;
+    max-height: 750px;     
+    margin: 0 auto;
+    position: relative;
+}
+
+body {
+    background-color: #101010;
+    color: #f5f5f5;
+}
+
+h1, h2, h3, p {
+    margin: 0;  
+    padding: 0;
+}
+
+img {
+    display: block;
+    border-radius: 10px;
+    width: 40%;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 35px;
+}
+
+p {
+    font-family: Lexend;
+    font-size: 21px;
+    line-height: 1.5;
+    padding: 35px 100px 0 100px;
+    text-indent: 2em;
+}
