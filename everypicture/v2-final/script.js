@@ -25,4 +25,48 @@ window.addEventListener('load', function () {
             currentFrame = i;
         });
     }
+
+    const kiteImgs = ['kb-19.JPG', 'kb-20.JPG', 'kb-21.JPG', 'kb-22.JPG', 'kb-23.JPG', 'kb-24.JPG', 'kb-25.JPG', 'kb-26.JPG', 'kb-27.JPG', 'kb-28.JPG', 'kb-29.JPG', 'kb-30.JPG', 'kb-31.JPG', 'kb-32.JPG', 'kb-33.JPG', 'kb-34.JPG', 'kb-35.JPG', 'kb-36.JPG', 'kb-37.JPG'];
+    let currentImage = 0;
+
+    const slide = document.querySelector('#myKite');
+
+    document.querySelector('#next').addEventListener('click', nextPhoto);
+    document.querySelector('#previous').addEventListener('click', previousPhoto);
+
+    function nextPhoto(){
+        currentImage++;
+
+        if (currentImage > kiteImgs.length - 1){
+            currentImage = 0;
+        }
+        slide.src = `images/${kiteImgs[currentImage]}`;
+    }
+
+    function previousPhoto(){
+        currentImage--;
+
+        if (currentImage < 0){
+            currentImage = kiteImgs.length - 1;
+        }
+        slide.src = `images/${kiteImgs[currentImage]}`;
+    }
+
+    const container = document.querySelector('#kestrel');
+    const theKestrel = document.querySelector('#filmImg3');
+    const percent = container.offsetWidth / 100;
+    let prevLoc = 0;
+
+    container.addEventListener('mousemove', reportPos);
+
+    function reportPos(event){
+        const mousePosX = Math.ceil((event.clientX - (container.getBoundingClientRect().left)) / percent);
+
+        if(prevLoc !== mousePosX){
+            let addedPx = mousePosX * 10;
+            theKestrel.style.width = (890 + addedPx) + 'px';
+            prevLoc = mousePosX;
+            console.log(prevLoc);
+        }
+    }
 });
