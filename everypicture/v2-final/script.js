@@ -57,6 +57,9 @@ window.addEventListener('load', function () {
     const percent = container.offsetWidth / 100;
     let prevLoc = 0;
 
+    const targetX = 100;  
+    const targetY = 400;
+
     container.addEventListener('mousemove', reportPos);
 
     function reportPos(event){
@@ -64,9 +67,10 @@ window.addEventListener('load', function () {
 
         if(prevLoc !== mousePosX){
             let addedPx = mousePosX * 10;
-            theKestrel.style.width = (890 + addedPx) + 'px';
+            let scale = 1 + (addedPx / 890);
+            theKestrel.style.transformOrigin = `${targetX}px ${targetY}px`;
+            theKestrel.style.transform = `scale(${scale})`;
             prevLoc = mousePosX;
-            console.log(prevLoc);
         }
     }
 });

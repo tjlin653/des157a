@@ -28,11 +28,13 @@ h2 {
     font-family: Lexend;
     font-size: 24px;
     text-align: center;
-    padding-bottom: 20px;
+    margin: 0;
+    padding: 20px 0 0 0;
 }
 
 #filmBorder1 {
     overflow: hidden;
+    margin-top: 50px;
 }
 
 .filmImg1 {
@@ -107,8 +109,8 @@ button:hover {
   display: block;
   width: 890px;
   position: relative;
-  top: 40px;
-  left: 30px;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 #kestrel {
@@ -116,7 +118,7 @@ button:hover {
     height: 547px;
     overflow: hidden;
     position: relative;
-    margin: auto;
+    transform: translate(20px, 40px);
 }
 
 #last-line{
