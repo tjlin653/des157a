@@ -132,3 +132,45 @@ body {
 .show {
     display: block !important;
 }
+
+#gameOptions {
+    display: flex;
+    justify-content: space-between;
+}
+
+#turnInfo, #gemInfo {
+    background-color: rgba(245, 245, 245, 0.4);
+    border-radius: 20px;
+    margin-top: 30px;
+    padding: 10px 40px 10px 40px;
+}
+
+#turnInfo p, #gemInfo p {
+    font-family: Caesar Dressing;
+    margin: 10px 0 10px 0;
+}
+
+#currentTurn, #magicGems {
+    font-size: 32px;
+}
+
+#finalTurn {
+    font-size: 16px;
+}
+
+#gemInfo {
+    text-align: right;
+}
+
+#menuOptions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+#option1, #option2, #option3 {
+    width: 26px;
+    height: 26px;
+    border-radius: 100px;
+    background-color: #EACDCD;
+}
