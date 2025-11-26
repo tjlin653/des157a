@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Almendra+SC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+    <link href="styles.css" rel="stylesheet">
+    <script src="script.js" defer></script>
+    <title>Game V1</title>
+    <link rel="preload" as="image" href="images/table.svg">
+</head>
+<body>
+    <div id="homeScreen" class="show">
+        <img id = "logo"
+        src = "images/logo.svg">
+        <img id = "closed-scroll"
+        src = "images/closed-scroll.svg">
+        <button id="instructions-label">Instructions</button>
+        <button id="startgame">Begin</button>
+    </div>
+    <div id = 'instructions-page' class="hide">
+        <img id = "open-scroll"
+        src = "images/open-scroll.svg">
+        <p id="line1">An Evil Dragon has come to destroy your village!</p>
+        <p id="line2">But only the Holy Sword can slay the dragon.</p>
+        <p id="line3">A merchant will sell the sword for 50 Magic Gems.</p>
+        <p id="line4">Gather enough gems to buy the sword <br>and slay the dragon!</p>
+        <button id="close-instructions">Close</button>
+    </div>
+    <div id = 'gameScreen' class="hide">
+        
+    </div>
+</body>
+</html>
