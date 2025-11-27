@@ -4,23 +4,23 @@
 
     const gameData = {
         cards: [
-            {name: 'gorgon-eyes', file: 'gorgon-eyes.svg'},
             {name: 'bronze', file: 'bronze.svg', gems: 1},
             {name: 'silver', file: 'silver.svg', gems: 2},
             {name: 'gold', file: 'gold.svg', gems: 3},
             {name: 'emerald', file: 'emerald.svg', gems: 4},
             {name: 'diamond', file: 'diamond.svg', gems: 5},
             {name: 'treasure', file: 'treasure.svg', gems: 6},
+            {name: 'gorgon-eyes', file: 'gorgon-eyes.svg', gems: 0, effect: 'gorgon'},
         ],
-        roll1: 0,
-        roll2: 0,
-        roll3: 0,
-        roll4: 0,
-        powers: [],
-        gems: 0,
+        power: {
+            immuneToGorgon: false
+        },
+        hand: [],
+        gemTurn: 0,
+        gemTotal: 0,
         turn: 1,
         maxTurns: 10,
-        gemGoal: 50
+        gemGoal: 49
     };
 
     const instructionsBtn = document.querySelector('#instructions-label');
@@ -39,6 +39,7 @@
 
     const fourCards = document.querySelector('#fourCards');
     const winScreen = document.querySelector('#winScreen');
+    const currentTurn = document.querySelector('#currentTurn');
     const score = document.querySelector('#magicGems');
 
     instructionsBtn.addEventListener('click', function () {
@@ -58,8 +59,6 @@
         screenBG.style.backgroundColor = 'transparent';
         homeScreen.classList.replace('show', 'hide');
         gameScreen.classList.replace('hide', 'show');
-
-        setUpTurn();
     });
 
     document.querySelector('#quit').addEventListener('click', function(){
@@ -83,28 +82,50 @@
         }
     });
 
+    document.querySelector('#deal-cards').addEventListener('click', setUpTurn);
     function setUpTurn(){
-        document.querySelector('#deal-cards').addEventListener('click', function(){
-            dealCards();
-        });
+        dealCards();
     }
 
     function dealCards(){
-        gameData.roll1 = Math.floor(Math.random() * 6) + 1;
-        gameData.roll2 = Math.floor(Math.random() * 6) + 1;
-        gameData.roll3 = Math.floor(Math.random() * 6) + 1;
-        gameData.roll4 = Math.floor(Math.random() * 6) + 1;
-        fourCards.innerHTML += `<img src="images/${gameData.cards[gameData.roll1-1]}"> <img src="images/${gameData.cards[gameData.roll2-1]}">`;
-        gameData.gems = gameData.roll1 + gameData.roll2 + gameData.roll3 + gameData.roll4;
+        gameData.hand = [];
+        for (var i = 0; i < 4; i++){
+            let randomCards = Math.floor(Math.random() * gameData.cards.length);
+            gameData.hand.push(gameData.cards[randomCards]);
+        }
+        displayHand();
         applyEffects();
     }
 
-    function applyEffects(card){
+    function displayHand(){
+        fourCards.innerHTML = "";
+        gameData.hand.forEach(function(card){
+            fourCards.innerHTML += `<img src="images/${card.file}">`;
+        });
+    }
+
+    function applyEffects(){
+        gameData.gemTurn = 0;
+
+        gameData.hand.forEach(function(card){
+            gameData.gemTurn += card.gems;
+
+            const hasGorgon = gameData.hand.some(function(card){
+                return card.effect === 'gorgon';
+            });
+            
+            if(hasGorgon && gameData.power.immuneToGorgon === false){
+                gameData.gemTurn = 0;
+                gameData.gemTotal = 0;
+            }
+        });
+        
+        gameData.gemTotal += gameData.gemTurn;
         checkWinningCondition();
     }
 
     function checkWinningCondition(){
-        if(gameData.score[gameData.index] > gameData.gemGoal){
+        if(gameData.gemTotal > gameData.gemGoal){
             winScreen.classList.replace('hide', 'show');
         } else {
             showCurrentScore();
@@ -112,6 +133,12 @@
     }
 
     function showCurrentScore(){
-        score.innerHTML = `<p id='magicGems>Magic Gems: ${gameData.score[0]}</p>`;
+        score.textContent = `Magic Gems: ${gameData.gemTotal}`;
+        nextTurn();
+    }
+
+    function nextTurn(){
+        currentTurn.textContent = `Turn ${gameData.turn}`;
+        gameData.turn++;
     }
 })();
