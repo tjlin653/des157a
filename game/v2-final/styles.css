@@ -169,30 +169,28 @@ body {
 }
 
 #music, #help, #quit {
-    width: 28px;
-    height: 28px;
-    border-radius: 100px;
-    background-color: #EACDCD;
+    width: 32px;
+    height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 100px;
     outline: none;
     background-color: #EACDCD;
-    color: #f5f5f5;
-    border: 4px solid transparent;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 #music:hover, #help:hover, #quit:hover {
-    background-color: transparent;
-    border-color: #005EA0;
-    color:#005EA0;
+    background-color: #005EA0;
 }
 
 .icons {
 	font-size: 16px;
 	color: #005EA0;
+}
+
+#music:hover .icons i, #help:hover .icons i, #quit:hover .icons i {
+    color: #EACDCD;
 }
 
 #fourCards {
