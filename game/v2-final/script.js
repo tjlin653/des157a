@@ -2,15 +2,6 @@
     'use strict';
     console.log('reading js');
 
-    const instructionsBtn = document.querySelector('#instructions-label');
-    const instructionsPage = document.querySelector('#instructions-page');
-    const closeInstructions = document.querySelector('#close-instructions');
-
-    const startgameBtn = document.querySelector('#startgame');
-    const screenBG = document.querySelector('body');
-    const homeScreen = document.querySelector('#homeScreen');
-    const gameScreen = document.querySelector('#gameScreen');
-
     const gameData = {
         cards: ['gorgon-eyes.jpg', 'bronze.jpg', 'silver.jpg', 'gold.jpg', 'emerald.jpg', 'diamond.jpg', 'treasure.jpg'],
         powers: [],
@@ -35,6 +26,15 @@
         turnEnd: 9
     };
 
+    const instructionsBtn = document.querySelector('#instructions-label');
+    const instructionsPage = document.querySelector('#instructions-page');
+    const closeInstructions = document.querySelector('#close-instructions');
+
+    const startgameBtn = document.querySelector('#startgame');
+    const screenBG = document.querySelector('body');
+    const homeScreen = document.querySelector('#homeScreen');
+    const gameScreen = document.querySelector('#gameScreen');
+
     instructionsBtn.addEventListener('click', function () {
         instructionsPage.classList.replace('hide', 'show');
     });
@@ -52,5 +52,13 @@
         screenBG.style.backgroundColor = 'transparent';
         homeScreen.classList.replace('show', 'hide');
         gameScreen.classList.replace('hide', 'show');
+    });
+
+    document.querySelector('#quit').addEventListener('click', function(){
+        location.reload();
+    });
+
+    document.querySelector('#help').addEventListener('click', function(){
+        instructionsPage.classList.replace('hide', 'show');
     });
 })();

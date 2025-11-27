@@ -168,7 +168,7 @@ body {
     gap: 8px;
 }
 
-#option1, #option2, #option3 {
+#music, #help, #quit {
     width: 28px;
     height: 28px;
     border-radius: 100px;
@@ -184,7 +184,7 @@ body {
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-#option1:hover, #option2:hover, #option3:hover {
+#music:hover, #help:hover, #quit:hover {
     background-color: transparent;
     border-color: #005EA0;
     color:#005EA0;
