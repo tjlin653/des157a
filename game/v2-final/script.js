@@ -41,9 +41,11 @@
     const settingsIcon = document.querySelector('#settings i');
 
     const fourCards = document.querySelector('#fourCards');
-    const winScreen = document.querySelector('#winScreen');
     const currentTurn = document.querySelector('#currentTurn');
     const score = document.querySelector('#magicGems');
+
+    const winScreen = document.querySelector('#win-screen');
+    const loseScreen = document.querySelector('#lose-screen');
 
     instructionsBtn.addEventListener('click', function () {
         instructionsPage.classList.replace('hide', 'show');
@@ -56,7 +58,7 @@
     }
 
     startgameBtn.addEventListener('click', function(){
-        screenBG.style.backgroundImage = "url('images/table.svg')"
+        screenBG.style.backgroundImage = "url('images/table.svg')";
         screenBG.style.backgroundSize = "cover";
         screenBG.style.backgroundPosition = "center bottom";
         screenBG.style.backgroundColor = 'transparent';
@@ -79,6 +81,12 @@
 
     document.querySelector('#quit').addEventListener('click', function(){
         location.reload();
+    });
+
+    document.querySelectorAll('.endingBtn').forEach(function(btn){
+        btn.addEventListener('click', function(){
+            location.reload();
+        });
     });
 
     document.querySelector('#help').addEventListener('click', function(){
@@ -145,7 +153,17 @@
 
     function checkWinningCondition(){
         if(gameData.gemTotal > gameData.gemGoal){
+            gameScreen.classList.replace('show', 'hide');
             winScreen.classList.replace('hide', 'show');
+            screenBG.style.backgroundImage = "url('images/win-screen.svg')";
+            screenBG.style.backgroundSize = "cover";
+            screenBG.style.backgroundPosition = "center top";
+        } else if(gameData.gemTotal < gameData.gemGoal && gameData.turn > gameData.maxTurns) {
+            gameScreen.classList.replace('show', 'hide');
+            loseScreen.classList.replace('hide', 'show');
+            screenBG.style.backgroundImage = "url('images/lose-screen.svg')";
+            screenBG.style.backgroundSize = "cover";
+            screenBG.style.backgroundPosition = "center top";
         } else {
             showCurrentScore();
         }
