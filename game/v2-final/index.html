@@ -34,31 +34,25 @@
         src = "images/open-scroll.svg">
         <p id="line1">An <span class="important-text">Evil Dragon</span> has come to destroy your village!</p>
         <p id="line2">But only the <span class="important-text">Holy Sword</span> can slay the dragon.</p>
-        <p id="line3">A merchant will sell this sword for <span class="important-text">50 Magic Gems</span>.</p>
+        <p id="line3">A merchant will sell this sword for <span class="important-text">30 Magic Gems</span>.</p>
         <p id="line4">Gather enough gems by the <span class="important-text">10th Turn</span><br> to buy the sword and slay the dragon!</p>
         <button id="close-instructions">Close</button>
     </div>
     <div id = 'gameScreen' class="hide">
-        <div id="gameOptions">
+        <div id="gameInfo">
             <div id="turnInfo">
                 <p id="currentTurn">Turn 0</p>
                 <p id="finalTurn">Final Turn: 10</p>
             </div>
             <div id="gemInfo">
-                <p id="magicGems">Magic Gems: 0</p>
-                <p id="gemMax">Gem Goal: 50</p>
+                <p id="magicGems">Gems: 0</p>
+                <p id="gemMax">Gem Goal: 30</p>
             </div>
         </div>
-        <div id="fourCards">
-            <img src="images/empty-card.svg">
-            <img src="images/empty-card.svg">
+        <div id="display-cards">
             <img src="images/empty-card.svg">
             <img src="images/empty-card.svg">
         </div>
-        <div id="bottom-bar">
-            <div id="deal-button">
-                <button id="deal-cards">Deal Cards</button>
-            </div>
             <div id="settings">
                 <div class="icons">
                     <i class="fa-solid fa-gear"></i>
@@ -78,7 +72,6 @@
                     <button>Quit Game</button>
                 </div>
             </div>
-        </div>
     </div>
     <div id="win-screen" class="hide">
         <p class="ending-text">VICTORY!</p>

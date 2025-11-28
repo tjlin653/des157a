@@ -3,13 +3,15 @@
     console.log('reading js');
 
     const gameData = {
-        cards: [
+        cardGem: [
             {name: 'bronze', file: 'bronze.svg', gems: 1},
             {name: 'silver', file: 'silver.svg', gems: 2},
             {name: 'gold', file: 'gold.svg', gems: 3},
             {name: 'emerald', file: 'emerald.svg', gems: 4},
             {name: 'diamond', file: 'diamond.svg', gems: 5},
             {name: 'treasure', file: 'treasure.svg', gems: 6},
+        ],
+        cardEffect: [
             {name: 'gorgon-eyes', file: 'gorgon-eyes.svg', gems: 0, effect: 'gorgon'},
         ],
         power: {
@@ -20,17 +22,19 @@
         gemTotal: 0,
         turn: 1,
         maxTurns: 10,
-        gemGoal: 49
+        gemGoal: 30,
+        currentCardEffect: null,
+        currentCardGem: null
     };
 
     const instructionsBtn = document.querySelector('#instructions-label');
     const instructionsPage = document.querySelector('#instructions-page');
     const closeInstructions = document.querySelector('#close-instructions');
 
-    const startgameBtn = document.querySelector('#startgame');
     const screenBG = document.querySelector('body');
     const homeScreen = document.querySelector('#homeScreen');
     const gameScreen = document.querySelector('#gameScreen');
+    const startgameBtn = document.querySelector('#startgame');
 
     const musicBtn = document.querySelector('#music button');
     const bgmusic = document.querySelector('#bg-music');
@@ -40,7 +44,7 @@
     const menu = document.querySelector('#menuOptions');
     const settingsIcon = document.querySelector('#settings i');
 
-    const fourCards = document.querySelector('#fourCards');
+    const displayCards = document.querySelector('#display-cards');
     const currentTurn = document.querySelector('#currentTurn');
     const score = document.querySelector('#magicGems');
 
@@ -48,12 +52,14 @@
     const loseScreen = document.querySelector('#lose-screen');
 
     instructionsBtn.addEventListener('click', function () {
-        instructionsPage.classList.replace('hide', 'show');
+        instructionsPage.classList.add('show');
+        instructionsPage.classList.remove('hide');
     });
 
     if (closeInstructions) {
         closeInstructions.addEventListener('click', function () {
-            instructionsPage.classList.replace('show', 'hide');
+            instructionsPage.classList.add('hide');
+            instructionsPage.classList.remove('show');
         });
     }
 
@@ -62,8 +68,10 @@
         screenBG.style.backgroundSize = "cover";
         screenBG.style.backgroundPosition = "center bottom";
         screenBG.style.backgroundColor = 'transparent';
-        homeScreen.classList.replace('show', 'hide');
-        gameScreen.classList.replace('hide', 'show');
+        homeScreen.classList.add('hide');
+        homeScreen.classList.remove('show');
+        gameScreen.classList.add('show');
+        gameScreen.classList.remove('hide');
     });
 
     settings.addEventListener('click', function () {
@@ -90,7 +98,8 @@
     });
 
     document.querySelector('#help').addEventListener('click', function(){
-        instructionsPage.classList.replace('hide', 'show');
+        instructionsPage.classList.add('show');
+        instructionsPage.classList.remove('hide');
     });
 
     musicBtn.addEventListener('click', function(){
@@ -108,74 +117,95 @@
         }
     });
 
-    document.querySelector('#deal-cards').addEventListener('click', setUpTurn);
+    startgameBtn.addEventListener('click', setUpTurn);
     
     function setUpTurn(){
+        gameData.gemTurn = 0; 
         dealCards();
     }
 
     function dealCards(){
-        gameData.hand = [];
-        for (var i = 0; i < 4; i++){
-            let randomCards = Math.floor(Math.random() * gameData.cards.length);
-            gameData.hand.push(gameData.cards[randomCards]);
-        }
+        let randomCardGem = Math.floor(Math.random() * gameData.cardGem.length);
+        gameData.currentCardGem = gameData.cardGem[randomCardGem];
+
+        let randomCardEffect = Math.floor(Math.random() * gameData.cardEffect.length);
+        gameData.currentCardEffect = gameData.cardEffect[randomCardEffect];
+
         displayHand();
-        applyEffects();
     }
 
     function displayHand(){
-        fourCards.innerHTML = "";
-        gameData.hand.forEach(function(card){
-            fourCards.innerHTML += `<img src="images/${card.file}">`;
-        });
+        displayCards.innerHTML = "";
+        displayCards.innerHTML += `<img id="effect-card" src="images/${gameData.currentCardEffect.file}"> <img id="gem-card" src="images/${gameData.currentCardGem.file}">`;
+
+        document.querySelector('#gem-card').addEventListener('click', chooseGemCard);
+        document.querySelector('#effect-card').addEventListener('click', chooseEffectCard);
     }
 
-    function applyEffects(){
-        gameData.gemTurn = 0;
+    function chooseGemCard() {
+        let card = gameData.currentCardGem;
+        gameData.gemTurn += card.gems;
+        gameData.gemTotal += card.gems;
+        endTurn();
 
-        gameData.hand.forEach(function(card){
-            gameData.gemTurn += card.gems;
-
-            const hasGorgon = gameData.hand.some(function(card){
-                return card.effect === 'gorgon';
-            });
-            
-            if(hasGorgon && gameData.power.immuneToGorgon === false){
-                gameData.gemTurn = 0;
-                gameData.gemTotal = 0;
-            }
-        });
-        
-        gameData.gemTotal += gameData.gemTurn;
-        checkWinningCondition();
-    }
-
-    function checkWinningCondition(){
-        if(gameData.gemTotal > gameData.gemGoal){
-            gameScreen.classList.replace('show', 'hide');
-            winScreen.classList.replace('hide', 'show');
-            screenBG.style.backgroundImage = "url('images/win-screen.svg')";
-            screenBG.style.backgroundSize = "cover";
-            screenBG.style.backgroundPosition = "center top";
-        } else if(gameData.gemTotal < gameData.gemGoal && gameData.turn > gameData.maxTurns) {
-            gameScreen.classList.replace('show', 'hide');
-            loseScreen.classList.replace('hide', 'show');
-            screenBG.style.backgroundImage = "url('images/lose-screen.svg')";
-            screenBG.style.backgroundSize = "cover";
-            screenBG.style.backgroundPosition = "center top";
-        } else {
-            showCurrentScore();
+        if (gameScreen.classList.contains('show')) {
+            dealCards(); 
         }
     }
 
-    function showCurrentScore(){
-        score.textContent = `Magic Gems: ${gameData.gemTotal}`;
-        nextTurn();
+    function chooseEffectCard() {
+        let card = gameData.currentCardEffect;
+
+        if (card.effect === 'gorgon' && gameData.power.immuneToGorgon === false) {
+            gameData.gemTurn = 0;
+            gameData.gemTotal = 0;
+        } else {
+            gameData.gemTurn += card.gems;
+            gameData.gemTotal += card.gems;
+        }
+
+        endTurn();
+
+        if (gameScreen.classList.contains('show')) {
+            dealCards(); 
+        }
     }
 
-    function nextTurn(){
-        currentTurn.textContent = `Turn ${gameData.turn}`;
+    function endTurn() {
+        if (gameData.gemTotal >= gameData.gemGoal) {
+            playerWins();
+            return;
+        }
+        if (gameData.turn >= gameData.maxTurns) {
+            playerLoses();
+            return;
+        }
         gameData.turn++;
+        updateScoreAndTurn();
+    }
+
+    function updateScoreAndTurn() {
+        score.textContent = `Magic Gems: ${gameData.gemTotal}`;
+        currentTurn.textContent = `Turn ${gameData.turn}`;
+    }
+
+    function playerWins() {
+        gameScreen.classList.add('hide');
+        gameScreen.classList.remove('show');
+        winScreen.classList.add('show');
+        winScreen.classList.remove('hide');
+        screenBG.style.backgroundImage = "url('images/win-screen.svg')";
+        screenBG.style.backgroundSize = "cover";
+        screenBG.style.backgroundPosition = "center top";
+    }
+
+    function playerLoses() {
+        gameScreen.classList.add('hide');
+        gameScreen.classList.remove('show');
+        loseScreen.classList.add('show');
+        loseScreen.classList.remove('hide');
+        screenBG.style.backgroundImage = "url('images/lose-screen.svg')";
+        screenBG.style.backgroundSize = "cover";
+        screenBG.style.backgroundPosition = "center top";
     }
 })();
