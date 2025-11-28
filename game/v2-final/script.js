@@ -32,10 +32,13 @@
     const homeScreen = document.querySelector('#homeScreen');
     const gameScreen = document.querySelector('#gameScreen');
 
-    const musicBtn = document.querySelector('#music');
+    const musicBtn = document.querySelector('#music button');
     const bgmusic = document.querySelector('#bg-music');
     const startAudio = 111;
-    const musicIcon = document.querySelector('#music .icons i');
+    const musicIcon = document.querySelector('#music i');
+    const settings = document.querySelector('#settings');
+    const menu = document.querySelector('#menuOptions');
+    const settingsIcon = document.querySelector('#settings i');
 
     const fourCards = document.querySelector('#fourCards');
     const winScreen = document.querySelector('#winScreen');
@@ -61,6 +64,19 @@
         gameScreen.classList.replace('hide', 'show');
     });
 
+    settings.addEventListener('click', function () {
+
+        menu.classList.toggle('show');
+        menu.classList.toggle('hide');
+
+        if (menu.classList.contains('show')) {
+            settingsIcon.className = "fa-solid fa-xmark";
+        } 
+        else {
+            settingsIcon.className = "fa-solid fa-gear";
+        }
+    });
+
     document.querySelector('#quit').addEventListener('click', function(){
         location.reload();
     });
@@ -76,13 +92,16 @@
         if (bgmusic.paused) {
             bgmusic.play();
             musicIcon.className = "fa-solid fa-pause";
+            musicBtn.textContent = 'Pause Music';
         } else {
             bgmusic.pause();
             musicIcon.className = "fa-solid fa-play";
+            musicBtn.textContent = 'Play Music';
         }
     });
 
     document.querySelector('#deal-cards').addEventListener('click', setUpTurn);
+    
     function setUpTurn(){
         dealCards();
     }

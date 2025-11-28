@@ -154,43 +154,12 @@ body {
     font-size: 32px;
 }
 
-#finalTurn {
+#finalTurn, #gemMax {
     font-size: 18px;
 }
 
 #gemInfo {
     text-align: right;
-}
-
-#menuOptions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-}
-
-#music, #help, #quit {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100px;
-    outline: none;
-    background-color: #EACDCD;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-#music:hover, #help:hover, #quit:hover {
-    background-color: #005EA0;
-}
-
-.icons {
-	font-size: 16px;
-	color: #005EA0;
-}
-
-#music:hover .icons i, #help:hover .icons i, #quit:hover .icons i {
-    color: #EACDCD;
 }
 
 #fourCards {
@@ -199,10 +168,16 @@ body {
     margin-top: 70px;
 }
 
+#bottom-bar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
 #deal-button {
+    flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
     margin-top: 70px;
 }
 
@@ -223,4 +198,71 @@ body {
     background-color: transparent;
     border-color: #005EA0;
     color:#005EA0;
+}
+
+#settings {
+    position: relative;
+    z-index: 3;
+    margin-left: auto;
+    margin-top: 70px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    outline: none;
+    background-color: #EACDCD;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#settings:hover {
+    background-color: #005EA0;
+}
+
+.icons {
+	font-size: 16px;
+	color: #005EA0;
+}
+
+#settings:hover i {
+    color: #EACDCD;
+}
+
+#menuOptions {
+    position: absolute;
+    z-index: 2;
+    width: 140px;
+    height: 160px;
+    left: 1050px;
+    top: 490px;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 30px;
+    padding-left: 20px;
+}
+
+#menuOptions button {
+    border: none;
+    background-color: transparent;
+}
+
+#music, #help, #quit {
+    font-family: Lexend;
+    font-size: 16px;
+    width: 150px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    color: #005EA0;
+    margin-bottom: 10px;
+}
+
+#menuOptions button:hover {
+    text-decoration: underline;
+    color: #005EA0;
 }
