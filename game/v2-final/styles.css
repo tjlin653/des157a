@@ -42,33 +42,54 @@ body {
 
 #instructions-page p {
     position: absolute;
-    font-size: 21px;
+    font-size: 18px;
     font-family: Almendra SC;
+    left: 365px;     
+    transform: none; 
+    text-align: left;
 }
 
 #instructions-page #line1 {
     top: 150px;           
-    left: 50%;           
-    transform: translateX(-50%);
 }
 
 #instructions-page #line2 {
     top: 225px;           
-    left: 50%;           
-    transform: translateX(-50%);
 }
 
 #instructions-page #line3 {
-    top: 300px;           
-    left: 50%;           
-    transform: translateX(-50%);
+    top: 290px;           
 }
 
 #instructions-page #line4 {
     top: 375px;           
-    left: 50%;           
+}
+
+#instructions-page #line5 {
+    top: 440px;           
+}
+
+#close-instructions {
+    position: absolute;
+    top: 510px;
+    left: 50%;
     transform: translateX(-50%);
-    text-align: center;
+    font-family: Lexend;
+    font-size: 21px;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    background-color: transparent;
+    border: 4px solid #005EA0;
+    color: #005EA0;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+#close-instructions:hover {
+    background-color: #005EA0;
+    border-color: transparent;
+    color: #f5f5f5;
 }
 
 .important-text {
@@ -105,29 +126,6 @@ body {
     background-color: transparent;
     border-color: #f5f5f5;
     color:#f5f5f5;
-}
-
-#close-instructions {
-    position: absolute;
-    top: 485px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: Lexend;
-    font-size: 21px;
-    width: 200px;
-    height: 40px;
-    border-radius: 10px;
-    outline: none;
-    background-color: transparent;
-    border: 4px solid #005EA0;
-    color: #005EA0;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
-
-#close-instructions:hover {
-    background-color: #005EA0;
-    border-color: transparent;
-    color: #f5f5f5;
 }
 
 .hide {
