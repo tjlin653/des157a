@@ -15,7 +15,8 @@
             {name: 'gorgon-eyes', file: 'gorgon-eyes.svg', gems: 0, effect: 'gorgon'},
         ],
         power: {
-            immuneToGorgon: false
+            drewGorgonGaze: false,
+            drewGorgonGazePending: false
         },
         hand: [],
         gemTurn: 0,
@@ -125,6 +126,7 @@
     }
 
     function dealCards(){
+
         let randomCardGem = Math.floor(Math.random() * gameData.cardGem.length);
         gameData.currentCardGem = gameData.cardGem[randomCardGem];
 
@@ -144,8 +146,12 @@
 
     function chooseGemCard() {
         let card = gameData.currentCardGem;
-        gameData.gemTurn += card.gems;
-        gameData.gemTotal += card.gems;
+
+        if (!gameData.power.drewGorgonGaze) {
+            gameData.gemTurn += card.gems;
+            gameData.gemTotal += card.gems;
+        }
+
         endTurn();
 
         if (gameScreen.classList.contains('show')) {
@@ -156,12 +162,13 @@
     function chooseEffectCard() {
         let card = gameData.currentCardEffect;
 
-        if (card.effect === 'gorgon' && gameData.power.immuneToGorgon === false) {
-            gameData.gemTurn = 0;
-            gameData.gemTotal = 0;
+        if (card.effect === 'gorgon') {
+            gameData.power.drewGorgonGazePending = true; 
         } else {
-            gameData.gemTurn += card.gems;
-            gameData.gemTotal += card.gems;
+            if (!gameData.power.drewGorgonGaze) {
+                gameData.gemTurn += card.gems;
+                gameData.gemTotal += card.gems;
+            }
         }
 
         endTurn();
@@ -181,6 +188,16 @@
             return;
         }
         gameData.turn++;
+
+        if (gameData.power.drewGorgonGaze) {
+            gameData.power.drewGorgonGaze = false;
+        }
+
+        if (gameData.power.drewGorgonGazePending) {
+            gameData.power.drewGorgonGazePending = false;
+            gameData.power.drewGorgonGaze = true;
+        }
+
         updateScoreAndTurn();
     }
 
