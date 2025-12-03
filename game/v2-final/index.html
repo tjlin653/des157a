@@ -23,11 +23,11 @@
         <img id = "logo"
         src = "images/logo.svg">
 
-        <button id="startgame">Begin</button>
+        <button id="startgame" class="interactable">Begin</button>
 
         <img id = "closed-scroll"
         src = "images/closed-scroll.svg">
-        <button id="instructions-label">Instructions</button>
+        <button id="instructions-label" class="interactable">Instructions</button>
     </div>
     <div id = 'instructions-page' class="hide">
         <img id = "open-scroll"
@@ -37,7 +37,7 @@
         <p id="line3">You must then choose between an <span class="important-text">Effect Card</span><br>(on the left) and a <span class="important-text">Gem Card</span> (on the right).</p>
         <p id="line4">The effect card is high-risk, high-reward opportunity, <br> while the gem card will provide a gem value.</p>
         <p id="line5">Gather enough gems by the <span class="important-text">10th Turn</span> to win!</p>
-        <button id="close-instructions">Close</button>
+        <button id="close-instructions" class="interactable">Close</button>
     </div>
     <div id = 'gameScreen' class="hide">
         <div id="gameInfo">
@@ -51,40 +51,40 @@
             </div>
         </div>
         <p id="effectInfo"></p>
-        <div id="display-cards">
+        <div id="display-cards" class="interactable">
             <img src="images/empty-card.svg">
             <img src="images/empty-card.svg">
         </div>
-            <div id="settings">
+            <div id="settings" class="interactable">
                 <div class="icons">
                     <i class="fa-solid fa-gear"></i>
                 </div>
             </div>
             <div id="menuOptions" class="hide">
                 <div id="music">
-                    <i class="fa-solid fa-music"></i>
-                    <button>Play Music</button>
+                    <i class="fa-solid fa-music interactable"></i>
+                    <button class="interactable">Play Music</button>
                 </div>
                 <div id="help">
-                    <i class="fa-regular fa-circle-question"></i>
-                    <button>Instructions</button>
+                    <i class="fa-regular fa-circle-question interactable"></i>
+                    <button class="interactable">Instructions</button>
                 </div>
                 <div id="quit">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <button>Quit Game</button>
+                    <i class="fa-solid fa-right-from-bracket interactable"></i>
+                    <button class="interactable">Quit Game</button>
                 </div>
             </div>
     </div>
     <div id="win-screen" class="hide">
         <p class="ending-text">VICTORY!</p>
         <div class="end-button">
-            <button class="endingBtn">Play Again?</button>
+            <button class="endingBtn interactable">Play Again?</button>
         </div>
     </div>
     <div id="lose-screen" class="hide">
         <p class="ending-text">DEFEAT...</p>
         <div class="end-button">
-            <button class="endingBtn">Try Again?</button>
+            <button class="endingBtn interactable">Try Again?</button>
         </div>
     </div>
 </body>

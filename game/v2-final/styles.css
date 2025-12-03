@@ -295,3 +295,11 @@ body {
     left: 655px;
     color: #f5f5f5;
 }
+
+body {
+    cursor: url('images/medieval-mouse.png'), default;
+} 
+
+.interactable:hover {
+    cursor: url('images/medieval-hand.png'), pointer;
+}

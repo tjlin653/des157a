@@ -263,8 +263,6 @@
                 gameData.gemTurn += 10;
                 gameData.gemTotal += 10;
             }
-            endTurn();
-            return
         }
 
         gameData.gemTurn += card.gems;
