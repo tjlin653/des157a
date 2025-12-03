@@ -10,15 +10,40 @@
             {name: 'emerald', file: 'emerald.svg', gems: 4},
             {name: 'diamond', file: 'diamond.svg', gems: 5},
             {name: 'treasure', file: 'treasure.svg', gems: 6},
+            {name: 'skull', file: 'skull.svg', gems: -1},
+            {name: 'amulet', file: 'amulet.svg', gems: -2},
+            {name: 'voodoo', file: 'voodoo.svg', gems: -3},
+            {name: 'poison', file: 'poison.svg', gems: -4},
+            {name: 'runes', file: 'runes.svg', gems: -5},
+            {name: 'mimic', file: 'mimic.svg', gems: -6}
         ],
         cardEffect: [
-            {name: 'gorgon-eyes', file: 'gorgon-eyes.svg', gems: 0, effect: 'gorgon'},
+            {name: 'gorgon-eyes', file: 'gorgon-eyes.svg', gems: 2, effect: 'gorgon'},
+            {name: 'magic-mirror', file: 'magic-mirror.svg', gems: 0, effect: 'mirror'},
+            {name: 'demon-dice', file: 'demon-dice.svg', gems: 0, effect: 'dice'},
+            {name: 'doppelganger', file: 'doppelganger.svg', gems: 0, effect: 'doppelganger'},
+            {name: 'pinky-promise', file: 'pinky-promise.svg', gems: 6, effect: 'promise'},
+            {name: 'dust-devil', file: 'dust-devil.svg', gems: 6, effect: 'dust'},
+            {name: 'sin-of-greed', file: 'sin-of-greed.svg', gems: 0, effect: 'greed'},
+            {name: 'tangled-time', file: 'tangled-time.svg', gems: 0, effect: 'time'},
+            {name: 'magic-gemsmith', file: 'magic-gemsmith.svg', gems: 0, effect: 'gemsmith'},
+            {name: 'wishing-well', file: 'wishing-well.svg', gems: -2, effect: 'well'},
+            {name: 'rich-get-richer', file: 'rich-get-richer.svg', gems: 0, effect: 'richer'}
         ],
         power: {
             drewGorgonGaze: false,
-            drewGorgonGazePending: false
+            drewGorgonGazePending: false,
+            magicMirror: false,
+            magicMirrorPending: false,
+            doppelganger: false,
+            doppelgangerPending: false,
+            pinkyPromise: false,
+            pinkyPromisePending: false,
+            dustDevil: false,
+            dustDevilPending: false,
+            wishingWell: false,
+            wishingWellPending: false,
         },
-        hand: [],
         gemTurn: 0,
         gemTotal: 0,
         turn: 1,
@@ -48,6 +73,7 @@
     const displayCards = document.querySelector('#display-cards');
     const currentTurn = document.querySelector('#currentTurn');
     const score = document.querySelector('#magicGems');
+    const effectInfo = document.querySelector('#effectInfo');
 
     const winScreen = document.querySelector('#win-screen');
     const loseScreen = document.querySelector('#lose-screen');
@@ -82,8 +108,7 @@
 
         if (menu.classList.contains('show')) {
             settingsIcon.className = "fa-solid fa-xmark";
-        } 
-        else {
+        } else {
             settingsIcon.className = "fa-solid fa-gear";
         }
     });
@@ -126,19 +151,43 @@
     }
 
     function dealCards(){
-
         let randomCardGem = Math.floor(Math.random() * gameData.cardGem.length);
         gameData.currentCardGem = gameData.cardGem[randomCardGem];
 
         let randomCardEffect = Math.floor(Math.random() * gameData.cardEffect.length);
         gameData.currentCardEffect = gameData.cardEffect[randomCardEffect];
 
+        if (gameData.power.pinkyPromise) {
+            gameData.currentCardGem = {name: 'empty-slot', file: 'empty-card.svg', gems: 0};
+            gameData.gemFile = "empty-card.svg";
+        } else if (gameData.power.dustDevil) {
+            gameData.gemFile = "hidden-card.svg";
+            gameData.effectFile = "hidden-card.svg";
+        } else if (gameData.power.wishingWell){
+            let positives = [];
+            for (let i = 0; i < gameData.cardGem.length; i++){
+                if (gameData.cardGem[i].gems> 0){
+                    positives.push(gameData.cardGem[i]);
+                }
+                let index = Math.floor(Math.random() * positives.length);
+                gameData.currentCardGem = positives[index];
+
+                gameData.gemFile = gameData.currentCardGem.file;
+                gameData.effectFile = gameData.currentCardEffect.file;
+
+                gameData.power.wishingWell = false;
+            }
+        } else {
+            gameData.gemFile = gameData.currentCardGem.file;
+            gameData.effectFile = gameData.currentCardEffect.file;
+        }
+
         displayHand();
     }
 
     function displayHand(){
         displayCards.innerHTML = "";
-        displayCards.innerHTML += `<img id="effect-card" src="images/${gameData.currentCardEffect.file}"> <img id="gem-card" src="images/${gameData.currentCardGem.file}">`;
+        displayCards.innerHTML += `<img id="effect-card" src="images/${gameData.effectFile}"> <img id="gem-card" src="images/${gameData.gemFile}">`;
 
         document.querySelector('#gem-card').addEventListener('click', chooseGemCard);
         document.querySelector('#effect-card').addEventListener('click', chooseEffectCard);
@@ -147,10 +196,20 @@
     function chooseGemCard() {
         let card = gameData.currentCardGem;
 
-        if (!gameData.power.drewGorgonGaze) {
-            gameData.gemTurn += card.gems;
-            gameData.gemTotal += card.gems;
+        if (card.name === "empty-slot") {
+            return;   
         }
+
+        let gemValue = card.gems;
+
+        if (gameData.power.magicMirror){
+            gemValue = gemValue * 2; 
+        } else if (gameData.power.doppelganger){
+            gemValue = (gemValue -2) * -1; 
+        } 
+
+        gameData.gemTurn += gemValue;
+        gameData.gemTotal += gemValue;
 
         endTurn();
 
@@ -162,14 +221,54 @@
     function chooseEffectCard() {
         let card = gameData.currentCardEffect;
 
-        if (card.effect === 'gorgon') {
+        if (card.effect === 'gorgon'){
             gameData.power.drewGorgonGazePending = true; 
-        } else {
-            if (!gameData.power.drewGorgonGaze) {
-                gameData.gemTurn += card.gems;
-                gameData.gemTotal += card.gems;
+            effectInfo.textContent = '*FROZEN*';
+        } else if (card.effect === 'mirror'){
+            gameData.power.magicMirrorPending = true;
+            effectInfo.textContent= '*DOUBLED*';
+        } else if (card.effect === 'dice'){
+            let diceValue;
+            if (Math.random() < 0.5) {
+                diceValue = 10;
+            } else {
+                diceValue = -10;
             }
+            gameData.gemTurn += diceValue;
+            gameData.gemTotal += diceValue;
+        } else if (card.effect === 'doppelganger'){
+            gameData.power.doppelgangerPending = true;
+            effectInfo.textContent= '*-2 & INVERTED*';
+        } else if (card.effect === 'promise'){
+            gameData.power.pinkyPromisePending = true; 
+        } else if (card.effect === 'dust'){
+            gameData.power.dustDevilPending = true;
+        } else if (card.effect === 'greed'){
+            gameData.gemTotal = gameData.gemTotal * 2;
+            gameData.turn = gameData.maxTurns;
+            endTurn();
+            return;
+        } else if (card.effect === 'time'){
+            let randomCardEffect = Math.floor(Math.random() * gameData.cardEffect.length);
+            gameData.currentCardEffect = gameData.cardEffect[randomCardEffect];
+            return chooseEffectCard();
+        } else if (card.effect === 'gemsmith'){
+            let randomCardGem = Math.floor(Math.random() * gameData.cardGem.length);
+            gameData.currentCardGem = gameData.cardGem[randomCardGem];
+            return chooseGemCard();
+        } else if (card.effect === 'well'){
+            gameData.power.wishingWellPending = true; 
+        } else if (card.effect === 'richer'){
+            if (gameData.gemTotal >= 20){
+                gameData.gemTurn += 10;
+                gameData.gemTotal += 10;
+            }
+            endTurn();
+            return
         }
+
+        gameData.gemTurn += card.gems;
+        gameData.gemTotal += card.gems;
 
         endTurn();
 
@@ -191,18 +290,55 @@
 
         if (gameData.power.drewGorgonGaze) {
             gameData.power.drewGorgonGaze = false;
+            effectInfo.textContent = '';
         }
-
         if (gameData.power.drewGorgonGazePending) {
             gameData.power.drewGorgonGazePending = false;
             gameData.power.drewGorgonGaze = true;
+        }
+        if (gameData.power.magicMirror) {
+            gameData.power.magicMirror = false;
+            effectInfo.textContent = '';
+        }
+        if (gameData.power.magicMirrorPending) {
+            gameData.power.magicMirrorPending = false;
+            gameData.power.magicMirror = true;
+        }
+        if (gameData.power.doppelganger) {
+            gameData.power.doppelganger = false;
+            effectInfo.textContent = '';
+        }
+        if (gameData.power.doppelgangerPending) {
+            gameData.power.doppelgangerPending = false;
+            gameData.power.doppelganger = true;
+        }
+        if (gameData.power.pinkyPromise) {
+            gameData.power.pinkyPromise = false;
+        }
+        if (gameData.power.pinkyPromisePending) {
+            gameData.power.pinkyPromisePending = false;
+            gameData.power.pinkyPromise = true;
+        }
+        if (gameData.power.dustDevil) {
+            gameData.power.dustDevil = false;
+        }
+        if (gameData.power.dustDevilPending) {
+            gameData.power.dustDevilPending = false;
+            gameData.power.dustDevil = true;
+        }
+        if (gameData.power.wishingWell) {
+            gameData.power.wishingWell = false;
+        }
+        if (gameData.power.wishingWellPending) {
+            gameData.power.wishingWellPending = false;
+            gameData.power.wishingWell = true;
         }
 
         updateScoreAndTurn();
     }
 
     function updateScoreAndTurn() {
-        score.textContent = `Magic Gems: ${gameData.gemTotal}`;
+        score.textContent = `Gems: ${gameData.gemTotal}`;
         currentTurn.textContent = `Turn ${gameData.turn}`;
     }
 

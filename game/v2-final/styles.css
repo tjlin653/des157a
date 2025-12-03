@@ -286,3 +286,12 @@ body {
     background-color: transparent;
     border-color: #F5F5F5;
 }
+
+#effectInfo {
+    position: absolute;
+    font-family: Caesar Dressing;
+    font-size: 31px;
+    top: 560px;
+    left: 655px;
+    color: #f5f5f5;
+}
