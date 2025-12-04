@@ -55,7 +55,10 @@
 
     const instructionsBtn = document.querySelector('#instructions-label');
     const instructionsPage = document.querySelector('#instructions-page');
-    const closeInstructions = document.querySelector('#close-instructions');
+    const closeInstructions = document.querySelector('.close-instructions');
+
+    const sourcesPage = document.querySelector('#sources-page');
+    const closeSources = document.querySelector('.close-sources');
 
     const screenBG = document.querySelector('body');
     const homeScreen = document.querySelector('#homeScreen');
@@ -70,6 +73,12 @@
     const menu = document.querySelector('#menuOptions');
     const settingsIcon = document.querySelector('#settings i');
 
+    const unsheatheSound = new Audio('audio/unsheathe.mp3');
+    const paperSound = new Audio('audio/paper.mp3');
+    const cardSound = new Audio('audio/card-dealing.mp3');
+    const victorySound = new Audio('audio/victory.mp3');
+    const defeatSound = new Audio('audio/defeat.mp3');
+
     const displayCards = document.querySelector('#display-cards');
     const currentTurn = document.querySelector('#currentTurn');
     const score = document.querySelector('#magicGems');
@@ -81,12 +90,14 @@
     instructionsBtn.addEventListener('click', function () {
         instructionsPage.classList.add('show');
         instructionsPage.classList.remove('hide');
+        paperSound.play();
     });
 
     if (closeInstructions) {
         closeInstructions.addEventListener('click', function () {
             instructionsPage.classList.add('hide');
             instructionsPage.classList.remove('show');
+            paperSound.play();
         });
     }
 
@@ -99,10 +110,10 @@
         homeScreen.classList.remove('show');
         gameScreen.classList.add('show');
         gameScreen.classList.remove('hide');
+        unsheatheSound.play();
     });
 
     settings.addEventListener('click', function () {
-
         menu.classList.toggle('show');
         menu.classList.toggle('hide');
 
@@ -114,6 +125,7 @@
     });
 
     document.querySelector('#quit').addEventListener('click', function(){
+        defeatSound.play();
         location.reload();
     });
 
@@ -126,7 +138,22 @@
     document.querySelector('#help').addEventListener('click', function(){
         instructionsPage.classList.add('show');
         instructionsPage.classList.remove('hide');
+        paperSound.play();
     });
+
+    document.querySelector('#sources').addEventListener('click', function(){
+        sourcesPage.classList.add('show');
+        sourcesPage.classList.remove('hide');
+        paperSound.play();
+    });
+
+    if (closeSources) {
+        closeSources.addEventListener('click', function () {
+            sourcesPage.classList.add('hide');
+            sourcesPage.classList.remove('show');
+            paperSound.play();
+        });
+    }
 
     musicBtn.addEventListener('click', function(){
         if (bgmusic.currentTime === 0){
@@ -191,6 +218,8 @@
 
         document.querySelector('#gem-card').addEventListener('click', chooseGemCard);
         document.querySelector('#effect-card').addEventListener('click', chooseEffectCard);
+
+        cardSound.play();
     }
 
     function chooseGemCard() {
@@ -341,6 +370,7 @@
     }
 
     function playerWins() {
+        victorySound.play();
         gameScreen.classList.add('hide');
         gameScreen.classList.remove('show');
         winScreen.classList.add('show');
@@ -351,6 +381,7 @@
     }
 
     function playerLoses() {
+        defeatSound.play();
         gameScreen.classList.add('hide');
         gameScreen.classList.remove('show');
         loseScreen.classList.add('show');

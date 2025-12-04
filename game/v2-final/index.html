@@ -30,14 +30,35 @@
         <button id="instructions-label" class="interactable">Instructions</button>
     </div>
     <div id = 'instructions-page' class="hide">
-        <img id = "open-scroll"
-        src = "images/open-scroll.svg">
-        <p id="line1">An <span class="important-text">Evil Dragon</span> has come to destroy your village!<br>But only the Holy Sword can slay the dragon.</p>
-        <p id="line2">A merchant will sell the sword for <span class="important-text">30 Magic Gems</span>.<br>And each turn, they will deal 2 cards.</p>
-        <p id="line3">You must then choose between an <span class="important-text">Effect Card</span><br>(on the left) and a <span class="important-text">Gem Card</span> (on the right).</p>
-        <p id="line4">The effect card is high-risk, high-reward opportunity, <br> while the gem card will provide a gem value.</p>
-        <p id="line5">Gather enough gems by the <span class="important-text">10th Turn</span> to win!</p>
-        <button id="close-instructions" class="interactable">Close</button>
+        <img class = "open-scroll" src = "images/open-scroll.svg">
+        <p class="line1">An <span class="important-text">Evil Dragon</span> has come to destroy your village!<br>But only the Holy Sword can slay the dragon.</p>
+        <p class="line2">A merchant will sell the sword for <span class="important-text">30 Magic Gems</span>.<br>And each turn, they will deal 2 cards.</p>
+        <p class="line3">You must then choose between an <span class="important-text">Effect Card</span><br>(on the left) and a <span class="important-text">Gem Card</span> (on the right).</p>
+        <p class="line4">The effect card is high-risk, high-reward opportunity, <br> while the gem card will provide a gem value.</p>
+        <p class="line5">Gather enough gems by the <span class="important-text">10th Turn</span> to win!</p>
+        <button class="close-instructions interactable">Close</button>
+    </div>
+    <div id = 'sources-page' class="hide">
+        <img class = "open-scroll" src = "images/open-scroll.svg">
+        <p class="line1"><strong>Sword Unsheathing</strong><br>
+            Sword - Unsheathe by Vrymaa -- <a href="https://freesound.org/s/770035/">https://freesound.org/s/770035/</a> <br>-- License: Creative Commons 0
+        </p>
+        <p class="line2"><strong>Paper Crumpling</strong><br>
+            Crumpling paper 001.wav by tosha73 -- <a href="https://freesound.org/s/706498/">https://freesound.org/s/706498/</a> <br>-- License: Attribution 4.0
+        </p>
+        <p class="line3"><strong>Card Dealing</strong><br>
+            place_cards.wav by themfish -- <a href="https://freesound.org/s/45816/">https://freesound.org/s/45816/</a> <br>-- License: Attribution 4.0
+        </p>
+        <p class="line4"><strong>Victory Trumpets</strong><br>
+            French horn and Timpani Fanfare short by marlocarlo -- <br><a href="https://freesound.org/s/803823/">https://freesound.org/s/803823/</a> -- License: Creative Commons 0
+        </p>
+        <p class="line5"><strong>Defeat Trumpets</strong><br>
+            French horn and Timpani Fanfare short by marlocarlo -- <br><a href="https://freesound.org/s/803823/">https://freesound.org/s/803823/</a> -- License: Creative Commons 0
+        </p>
+        <p class="line6"><strong>Kingdom Dance</strong><br>
+            <a href="https://www.youtube.com/watch?v=0X0sLw63KLU">https://www.youtube.com/watch?v=0X0sLw63KLU</a>
+        </p>
+        <button class="close-sources interactable">Close</button>
     </div>
     <div id = 'gameScreen' class="hide">
         <div id="gameInfo">
@@ -52,8 +73,12 @@
         </div>
         <p id="effectInfo"></p>
         <div id="display-cards" class="interactable">
-            <img src="images/empty-card.svg">
-            <img src="images/empty-card.svg">
+            <div class="card">
+                <img src="images/empty-card.svg">
+            </div>
+            <div class="card">
+                <img src="images/empty-card.svg">
+            </div>
         </div>
             <div id="settings" class="interactable">
                 <div class="icons">
@@ -66,8 +91,12 @@
                     <button class="interactable">Play Music</button>
                 </div>
                 <div id="help">
-                    <i class="fa-regular fa-circle-question interactable"></i>
+                    <i class="fa-solid fa-circle-question interactable"></i>
                     <button class="interactable">Instructions</button>
+                </div>
+                <div id="sources">
+                    <i class="fa-solid fa-file interactable"></i>
+                    <button class="interactable">Sources</button>
                 </div>
                 <div id="quit">
                     <i class="fa-solid fa-right-from-bracket interactable"></i>
