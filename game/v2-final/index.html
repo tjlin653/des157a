@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha556-xxxx" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link href="styles.css" rel="stylesheet">
     <script src="script.js" defer></script>
@@ -18,19 +18,19 @@
     <link rel="preload" as="image" href="images/table.svg">
 </head>
 <body>
-    <audio id="bg-music" src="audio/Kingdom Dance (From TangledScore).mp3" loop></audio>
+    <audio id="bg-music" src="audio/kingdomdance.mp3" loop></audio>
     <div id="homeScreen" class="show">
         <img id = "logo"
-        src = "images/logo.svg">
+        src = "images/logo.svg" alt="death to dragons logo">
 
         <button id="startgame" class="interactable">Begin</button>
 
         <img id = "closed-scroll"
-        src = "images/closed-scroll.svg">
+        src = "images/closed-scroll.svg" alt="closed scroll">
         <button id="instructions-label" class="interactable">Instructions</button>
     </div>
     <div id = 'instructions-page' class="hide">
-        <img class = "open-scroll" src = "images/open-scroll.svg">
+        <img class = "open-scroll" src = "images/open-scroll.svg" alt="open scroll">
         <p class="line1">An <span class="important-text">Evil Dragon</span> has come to destroy your village!<br>But only the Holy Sword can slay the dragon.</p>
         <p class="line2">A merchant will sell the sword for <span class="important-text">30 Magic Gems</span>.<br>And each turn, they will deal 2 cards.</p>
         <p class="line3">You must then choose between an <span class="important-text">Effect Card</span><br>(on the left) and a <span class="important-text">Gem Card</span> (on the right).</p>
@@ -39,7 +39,7 @@
         <button class="close-instructions interactable">Close</button>
     </div>
     <div id = 'sources-page' class="hide">
-        <img class = "open-scroll" src = "images/open-scroll.svg">
+        <img class = "open-scroll" src = "images/open-scroll.svg" alt="open scroll">
         <p class="line1"><strong>Sword Unsheathing</strong><br>
             Sword - Unsheathe by Vrymaa -- <a href="https://freesound.org/s/770035/">https://freesound.org/s/770035/</a> <br>-- License: Creative Commons 0
         </p>
@@ -74,10 +74,10 @@
         <p id="effectInfo"></p>
         <div id="display-cards" class="interactable">
             <div class="card">
-                <img src="images/empty-card.svg">
+                <img src="images/empty-card.svg" alt="empty card">
             </div>
             <div class="card">
-                <img src="images/empty-card.svg">
+                <img src="images/empty-card.svg" alt="empty card">
             </div>
         </div>
             <div id="settings" class="interactable">
