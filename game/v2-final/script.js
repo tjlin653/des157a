@@ -370,6 +370,7 @@
     }
 
     function playerWins() {
+        bgmusic.pause();
         victorySound.play();
         gameScreen.classList.add('hide');
         gameScreen.classList.remove('show');
@@ -381,6 +382,7 @@
     }
 
     function playerLoses() {
+        bgmusic.pause();
         defeatSound.play();
         gameScreen.classList.add('hide');
         gameScreen.classList.remove('show');
