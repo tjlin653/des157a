@@ -3,6 +3,7 @@
     console.log('reading js');
 
     const gameData = {
+        //the card on the right provides a gem value only
         cardGem: [
             {name: 'bronze', file: 'bronze.svg', gems: 1},
             {name: 'silver', file: 'silver.svg', gems: 2},
@@ -17,6 +18,7 @@
             {name: 'runes', file: 'runes.svg', gems: -5},
             {name: 'mimic', file: 'mimic.svg', gems: -6}
         ],
+        //the card on the left provides various effects
         cardEffect: [
             {name: 'gorgon-eyes', file: 'gorgon-eyes.svg', gems: 2, effect: 'gorgon'},
             {name: 'magic-mirror', file: 'magic-mirror.svg', gems: 0, effect: 'mirror'},
@@ -30,6 +32,7 @@
             {name: 'wishing-well', file: 'wishing-well.svg', gems: -2, effect: 'well'},
             {name: 'rich-get-richer', file: 'rich-get-richer.svg', gems: 0, effect: 'richer'}
         ],
+        //deals with effects that occur the next turn
         power: {
             drewGorgonGaze: false,
             drewGorgonGazePending: false,
@@ -87,12 +90,13 @@
     const winScreen = document.querySelector('#win-screen');
     const loseScreen = document.querySelector('#lose-screen');
 
+    //open instructions in the home screen
     instructionsBtn.addEventListener('click', function () {
         instructionsPage.classList.add('show');
         instructionsPage.classList.remove('hide');
         paperSound.play();
     });
-
+    //close instructions in the home screen
     if (closeInstructions) {
         closeInstructions.addEventListener('click', function () {
             instructionsPage.classList.add('hide');
@@ -101,6 +105,7 @@
         });
     }
 
+    //change screen to game screen
     startgameBtn.addEventListener('click', function(){
         screenBG.style.backgroundImage = "url('images/table.svg')";
         screenBG.style.backgroundSize = "cover";
@@ -113,10 +118,10 @@
         unsheatheSound.play();
     });
 
+    //settings button
     settings.addEventListener('click', function () {
         menu.classList.toggle('show');
         menu.classList.toggle('hide');
-
         if (menu.classList.contains('show')) {
             settingsIcon.className = "fa-solid fa-xmark";
         } else {
@@ -124,29 +129,32 @@
         }
     });
 
+    //quit game during a game
     document.querySelector('#quit').addEventListener('click', function(){
         defeatSound.play();
         location.reload();
     });
-
+    //reset game after win or loss
     document.querySelectorAll('.endingBtn').forEach(function(btn){
         btn.addEventListener('click', function(){
             location.reload();
         });
     });
 
+    //instructions in the game screen
     document.querySelector('#help').addEventListener('click', function(){
         instructionsPage.classList.add('show');
         instructionsPage.classList.remove('hide');
         paperSound.play();
     });
 
+    //open audio sources
     document.querySelector('#sources').addEventListener('click', function(){
         sourcesPage.classList.add('show');
         sourcesPage.classList.remove('hide');
         paperSound.play();
     });
-
+    //close audio sources
     if (closeSources) {
         closeSources.addEventListener('click', function () {
             sourcesPage.classList.add('hide');
@@ -155,6 +163,7 @@
         });
     }
 
+    //play background music during the game
     musicBtn.addEventListener('click', function(){
         if (bgmusic.currentTime === 0){
             bgmusic.currentTime = startAudio;
@@ -170,6 +179,7 @@
         }
     });
 
+    //when the game starts
     startgameBtn.addEventListener('click', setUpTurn);
     
     function setUpTurn(){
@@ -177,6 +187,7 @@
         dealCards();
     }
 
+    //randonly select 1 gem card and 1 effect card
     function dealCards(){
         let randomCardGem = Math.floor(Math.random() * gameData.cardGem.length);
         gameData.currentCardGem = gameData.cardGem[randomCardGem];
@@ -184,11 +195,12 @@
         let randomCardEffect = Math.floor(Math.random() * gameData.cardEffect.length);
         gameData.currentCardEffect = gameData.cardEffect[randomCardEffect];
 
+        //these effect cards change card selection
         if (gameData.power.pinkyPromise) {
             let randomCardEffect = Math.floor(Math.random() * gameData.cardEffect.length);
             gameData.currentCardEffect = gameData.cardEffect[randomCardEffect];
             gameData.effectFile = gameData.currentCardEffect.file;
-            
+
             gameData.currentCardGem = {name: 'empty-slot', file: 'empty-card.svg', gems: 0};
             gameData.gemFile = "empty-card.svg";
         } else if (gameData.power.dustDevil) {
@@ -209,6 +221,7 @@
                 gameData.power.wishingWell = false;
             }
         } else {
+            //normal card generation
             gameData.gemFile = gameData.currentCardGem.file;
             gameData.effectFile = gameData.currentCardEffect.file;
         }
@@ -216,6 +229,7 @@
         displayHand();
     }
 
+    //match the card image with the random selection
     function displayHand(){
         displayCards.innerHTML = "";
         displayCards.innerHTML += `<img id="effect-card" src="images/${gameData.effectFile}"> <img id="gem-card" src="images/${gameData.gemFile}">`;
@@ -226,21 +240,25 @@
         cardSound.play();
     }
 
+    //handles what happens if the player choose the card on the right
     function chooseGemCard() {
         let card = gameData.currentCardGem;
 
+        //the pinky-promise card forbids card selection on the right
         if (card.name === "empty-slot") {
             return;   
         }
 
         let gemValue = card.gems;
 
+        //these effect cards change the interaction with the card on the right
         if (gameData.power.magicMirror){
             gemValue = gemValue * 2; 
         } else if (gameData.power.doppelganger){
             gemValue = (gemValue -2) * -1; 
         } 
 
+        //calculate gems
         gameData.gemTurn += gemValue;
         gameData.gemTotal += gemValue;
 
@@ -251,6 +269,7 @@
         }
     }
 
+    //handles what happens if the player choose the card on the left
     function chooseEffectCard() {
         let card = gameData.currentCardEffect;
 
@@ -303,11 +322,13 @@
 
         endTurn();
 
+        //if the game screen is still shown, then the game hasn't ended yet
         if (gameScreen.classList.contains('show')) {
             dealCards(); 
         }
     }
 
+    //checks for win condition
     function endTurn() {
         if (gameData.gemTotal >= gameData.gemGoal) {
             playerWins();
@@ -319,6 +340,7 @@
         }
         gameData.turn++;
 
+        //if a card's effect would activate the next turn after being chosen, store it to activate it at the start of the next turn only
         if (gameData.power.drewGorgonGaze) {
             gameData.power.drewGorgonGaze = false;
             effectInfo.textContent = '';
@@ -368,11 +390,13 @@
         updateScoreAndTurn();
     }
 
+    //update the UI of the turn and score as the game progresses
     function updateScoreAndTurn() {
         score.textContent = `Gems: ${gameData.gemTotal}`;
         currentTurn.textContent = `Turn ${gameData.turn}`;
     }
 
+    //display win screen
     function playerWins() {
         bgmusic.pause();
         victorySound.play();
@@ -385,6 +409,7 @@
         screenBG.style.backgroundPosition = "center top";
     }
 
+    //display loss screen
     function playerLoses() {
         bgmusic.pause();
         defeatSound.play();
