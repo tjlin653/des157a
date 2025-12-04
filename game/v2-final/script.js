@@ -185,6 +185,10 @@
         gameData.currentCardEffect = gameData.cardEffect[randomCardEffect];
 
         if (gameData.power.pinkyPromise) {
+            let randomCardEffect = Math.floor(Math.random() * gameData.cardEffect.length);
+            gameData.currentCardEffect = gameData.cardEffect[randomCardEffect];
+            gameData.effectFile = gameData.currentCardEffect.file;
+            
             gameData.currentCardGem = {name: 'empty-slot', file: 'empty-card.svg', gems: 0};
             gameData.gemFile = "empty-card.svg";
         } else if (gameData.power.dustDevil) {
